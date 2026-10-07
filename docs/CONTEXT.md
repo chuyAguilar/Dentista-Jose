@@ -60,6 +60,6 @@
 
 ## Trabajo en curso
 - Meta: arnés del proyecto (Etapa 2).
-- Hecho: esqueleto (2.1), constitución (2.2).
-- En curso: memoria y documentación (2.3).
-- Falta: CLAUDE.md (2.4), plantilla SDD (2.5), roles (2.6), rutinas (2.7), guardarraíles (2.8), MCP (2.9), pruebas del arnés (2.10).
+- Hecho: esqueleto (2.1), constitución (2.2), memoria y docs (2.3).
+- Hecho en un bloque (ADR-003): CLAUDE.md, plantilla SDD, roles, rutinas, guardarraíles, MCP y pruebas del arnés (2.4–2.10).
+- Falta: commit del bloque por el autor. Después, Etapa 3 (meta 001).

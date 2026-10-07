@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:harness": "vitest run tests/harness.test.ts"
   },
   "dependencies": {
     "next": "16.4.0",

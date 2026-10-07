@@ -1,6 +1,6 @@
 # Constitución — Integración Dental
 
-Última actualización: 2026-10-07
+Última actualización: 2026-10-07 (P2 enmendado por ADR-003)
 
 ## Índice
 - [Jerarquía de verdad](#jerarquía-de-verdad)
@@ -42,8 +42,10 @@ constitución > ADR vigentes > spec activo > plan > código.
 **Regla.**
 - Claude escribe el código. El autor dirige, decide, prueba en Android y hace los commits.
 - Ningún agente ejecuta `git commit` ni `git push`, ni reescribe el historial.
-- Al cerrar una fase, el agente propone un título de una línea, sin coautor, y el `git add` exacto.
-- Se trabaja una fase por vez. Al cerrarla, el agente se detiene.
+- Al cerrar un bloque, el agente propone un título de una línea, sin coautor, y el `git add` exacto.
+- Se trabaja por bloques: un bloque agrupa varias fases relacionadas y cierra con un solo commit (ADR-003).
+- Dentro del bloque, cada fase se verifica con su número antes de pasar a la siguiente.
+- Al cerrar el bloque, el agente se detiene. Se detiene antes si una fase falla o necesita una decisión del autor.
 - El commit del autor equivale a «sigue»: después de él se avanza sin preguntar.
 - Las decisiones del autor (objetivo, alcance, datos sensibles, stack, roles y criterios de terminado) no se inventan. Se proponen como «propuesta», con su recomendación y su porqué.
 

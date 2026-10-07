@@ -7,4 +7,4 @@
 - No se edita. Solo se agregan archivos.
 
 ## Índice
-- Ninguna copia todavía.
+- `2026-10-07-constitution-P2.md`: P2 antes de la enmienda de ADR-003.

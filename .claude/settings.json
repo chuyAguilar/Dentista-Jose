@@ -1,0 +1,71 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(git commit *)",
+      "Bash(git commit)",
+      "Bash(git push *)",
+      "Bash(git push)",
+      "Bash(git * commit *)",
+      "Bash(git * push *)",
+      "Bash(git rebase *)",
+      "Bash(git filter-branch *)",
+      "PowerShell(git commit *)",
+      "PowerShell(git commit)",
+      "PowerShell(git push *)",
+      "PowerShell(git push)",
+      "PowerShell(git * commit *)",
+      "PowerShell(git * push *)",
+      "PowerShell(git rebase *)",
+      "PowerShell(git filter-branch *)",
+      "Read(./info/**)",
+      "Edit(./info/**)"
+    ],
+    "allow": [
+      "Bash(npm test)",
+      "Bash(npm test *)",
+      "Bash(npm run test:harness)",
+      "Bash(npm run build)",
+      "Bash(npx vitest run *)",
+      "Bash(node *)",
+      "Bash(git status *)",
+      "Bash(git status)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "Bash(git diff)",
+      "Bash(git show *)",
+      "Bash(git ls-files *)",
+      "Skill(planear *)",
+      "Skill(fase *)",
+      "Skill(cerrar-fase)",
+      "Skill(encargo-pruebas *)",
+      "Skill(paridad-tarjeta)",
+      "Skill(prueba-android *)",
+      "Agent(planificacion)",
+      "Agent(desarrollo)",
+      "Agent(pruebas)"
+    ]
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "autoMemoryEnabled": false,
+  "env": {
+    "BASH_DEFAULT_TIMEOUT_MS": "300000",
+    "BASH_MAX_TIMEOUT_MS": "600000"
+  },
+  "enabledMcpjsonServers": ["context7"],
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:/Program Files/nodejs/node.exe\" \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard.mjs\" || exit 2"
+          }
+        ]
+      }
+    ]
+  }
+}

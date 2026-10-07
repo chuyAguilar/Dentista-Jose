@@ -15,21 +15,20 @@ Tope: 12 KB. Lo que sale de aquí se copia literal a `docs/history/`.
 
 ## Dónde estamos
 Spec activo: specs/_plantilla/
-- Etapa 2 (arnés), Fase 2.3 en curso: memoria y documentación.
+- Etapa 2 (arnés) cerrada en un bloque: Fases 2.4 a 2.10 (ADR-003).
 - El spec activo es la plantilla hasta que exista `specs/001-esqueleto-caminante/` (Etapa 3).
-- Hecho: Etapa 1 (brief aprobado), Fase 2.1 (`ef995f0`), Fase 2.2 (`22f72ab`).
+- Commits: 2.1 `ef995f0`, 2.2 `22f72ab`, 2.3 `9bd0223`. Bloque 2.4–2.10: pendiente del autor.
 
 ## Siguiente
 Orden del autor:
-1. Fases 2.4 a 2.10 del arnés, una por commit.
-2. Etapa 3: spec 001-esqueleto-caminante.
+1. Etapa 3: spec 001-esqueleto-caminante. Se trabaja por bloques (ADR-003).
 - El commit del autor equivale a «sigue» (P2).
 
 ## Decisiones abiertas
-- Ninguna sin entrada. Ver BACKLOG: A1 (CLABE), A2 (horarios reales), A3 (iPhone).
+- Ninguna sin entrada. Ver BACKLOG: A1 (CLABE), A2 (horarios reales), A3 (iPhone), M3 (escritura por Bash).
 
 ## Pendientes del autor
-- Commit de la Fase 2.3 (ver resumen de la fase).
+- Commit del bloque 2.4–2.10 (ver el resumen del bloque).
 - Conseguir la CLABE de BBVA (A1).
 - Conseguir los horarios reales y su reparto por consultorio (A2).
 
@@ -45,12 +44,16 @@ Solo por id. Los originales están en `info/` y ningún agente los lee (P1).
 - REF-05: nota a mano con datos bancarios (BBVA, titular). Es número de tarjeta, no CLABE.
 
 ## Cómo se verifica hoy
-- Comando: `npm test` (timeout 120 000 ms).
-- Resultado: 1 prueba, 1 en verde, 187 ms de Vitest, 1,4 s en total.
+- Suite completa: `npm test` (timeout 300 000 ms).
+- Solo el arnés: `npm run test:harness` (timeout 120 000 ms).
+- Resultado y tiempos: ver el resumen del bloque 2.4–2.10.
 
 ## Trampas conocidas
 - El número de REF-05 tiene 16 dígitos: es tarjeta. Una CLABE tiene 18 y en BBVA empieza con 012.
 - `vitest.config` va con extensión `.mts`. Con `.ts`, Vite avisa que carga ESM como CommonJS.
-- `npm ls` marca `@img/sharp-wasm32` y `@emnapi/runtime` como «extraneous». Son opcionales de Next. No rompen nada (B2).
-- TypeScript va fijo en 5.9.3. La 7.x no está verificada con Next 16.4 (B1).
-- La carpeta no tenía git al empezar. El autor hizo `git init` en la Fase 2.1.
+- `npm ls` marca `@img/sharp-wasm32` y `@emnapi/runtime` como «extraneous» (B2).
+- TypeScript va fijo en 5.9.3 (B1).
+- Los hooks fallan cerrado: si `guard.mjs` se rompe, se niegan todas las herramientas. Se arregla editando el archivo a mano, fuera de Claude.
+- Un hook que termina con código distinto de 0 y de 2 deja pasar la herramienta. Por eso cada hook va con `|| exit 2`.
+- `direccion` no puede editar `.claude/` ni la constitución. El mantenimiento del arnés se hace en una sesión normal (`claude`, sin `--agent`).
+- `npm info` está negado por el hook (B4). Usar `npm view`.

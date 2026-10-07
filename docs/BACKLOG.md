@@ -15,9 +15,12 @@ Prioridades:
 - [Media](#media)
   - [M1 — Dominio propio](#m1--dominio-propio)
   - [M2 — Medir clics en los botones](#m2--medir-clics-en-los-botones)
+  - [M3 — Los roles pueden escribir por Bash](#m3--los-roles-pueden-escribir-por-bash)
 - [Baja](#baja)
   - [B1 — Subir a TypeScript 7](#b1--subir-a-typescript-7)
   - [B2 — Paquetes «extraneous» en npm ls](#b2--paquetes-extraneous-en-npm-ls)
+  - [B3 — El hook global no ve alias ni scripts](#b3--el-hook-global-no-ve-alias-ni-scripts)
+  - [B4 — Falsos positivos de la palabra «info»](#b4--falsos-positivos-de-la-palabra-info)
 - [Cerrados](#cerrados)
 
 ## Alta
@@ -54,6 +57,12 @@ Prioridades:
 - **De dónde viene:** brief, criterio de éxito 6, 2026-10-07.
 - **Para cerrarla:** elegir una analítica sin cookies (por ejemplo, Vercel Web Analytics) con un ADR, y revisar el aviso de privacidad.
 
+### M3 — Los roles pueden escribir por Bash
+- **Qué es:** el hook de rol revisa Write, Edit y NotebookEdit. Un rol con Bash puede escribir un archivo con una redirección (`>`).
+- **Por qué se pospone:** analizar todo comando de shell es frágil. Los roles con Bash son `direccion`, `desarrollo` y `pruebas`.
+- **De dónde viene:** Fase 2.8, 2026-10-07.
+- **Para cerrarla:** que el hook de rol niegue en Bash las redirecciones y `tee` hacia rutas fuera del rol, con sus pruebas. Mientras tanto, `git diff` del autor antes de cada commit lo detecta.
+
 ## Baja
 
 ### B1 — Subir a TypeScript 7
@@ -67,6 +76,18 @@ Prioridades:
 - **Por qué se pospone:** son opcionales de Next y no afectan a las pruebas.
 - **De dónde viene:** Fase 2.1, 2026-10-07.
 - **Para cerrarla:** solo si estorba. Probar `npm ci` limpio y ver si desaparecen.
+
+### B3 — El hook global no ve alias ni scripts
+- **Qué es:** `guard.mjs` lee el texto del comando. No ve un alias de git, un script que haga commit por dentro, ni una ruta a `info/` armada con variables.
+- **Por qué se pospone:** no hay alias ni scripts así en el repo. Los agentes no pueden crearlos en `.claude/` y una negación nunca se rodea (CLAUDE.md §4).
+- **De dónde viene:** Fase 2.8, 2026-10-07.
+- **Para cerrarla:** solo si aparece un caso. Agregar el patrón a `guard.mjs` y su prueba en `tests/harness.test.ts`.
+
+### B4 — Falsos positivos de la palabra «info»
+- **Qué es:** el hook niega comandos de shell que usan «info» como palabra suelta, por ejemplo `npm info`.
+- **Por qué se pospone:** se prefiere negar de más (P1). Para versiones existe `npm view`.
+- **De dónde viene:** Fase 2.8, 2026-10-07.
+- **Para cerrarla:** solo si estorba. Afinar la expresión de `guard.mjs` y agregar el caso a las pruebas.
 
 ## Cerrados
 - Ninguno todavía.

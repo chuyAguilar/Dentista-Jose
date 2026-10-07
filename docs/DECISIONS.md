@@ -6,6 +6,8 @@ Registro aditivo. Un ADR viejo nunca se reescribe: se marca «Superseded por ADR
 ## Índice
 - [ADR-001 — Adopción del arnés de contexto y del flujo SDD](#adr-001--adopción-del-arnés-de-contexto-y-del-flujo-sdd)
 - [ADR-002 — Stack: Next.js en Vercel](#adr-002--stack-nextjs-en-vercel)
+- [ADR-003 — Trabajo por bloques con un commit por bloque](#adr-003--trabajo-por-bloques-con-un-commit-por-bloque)
+- [ADR-004 — MCP: solo context7](#adr-004--mcp-solo-context7)
 
 ## ADR-001 — Adopción del arnés de contexto y del flujo SDD
 Fecha: 2026-10-07
@@ -49,3 +51,41 @@ Estado: Aceptado
 - Vercel despliega Next.js sin configuración extra.
 - El proyecto puede crecer a citas o pagos en línea sin cambiar de framework.
 - El autor aprende React y el App Router. Se le enseña desde cero (P11).
+
+## ADR-003 — Trabajo por bloques con un commit por bloque
+Fecha: 2026-10-07
+Estado: Aceptado. Enmienda P2 de la constitución.
+
+**Contexto.**
+- P2 pedía una fase por vez, con un commit y una parada por fase.
+- El autor pidió avanzar más por paso y no hacer un commit por fase.
+- El texto anterior de P2 está en `docs/history/2026-10-07-constitution-P2.md`.
+
+**Decisión.**
+- Se trabaja por bloques. Un bloque agrupa fases relacionadas y cierra con un solo commit.
+- Cada fase del bloque se verifica con su número antes de pasar a la siguiente.
+- El agente se detiene al cerrar el bloque, o antes si una fase falla o necesita una decisión del autor.
+- En la Etapa 3, una «fase» del plan sigue siendo la unidad que se autoriza. El plan puede agrupar fases en un bloque.
+
+**Consecuencias.**
+- Menos paradas y menos commits.
+- Cada commit es más grande. El resumen del bloque lista el número de cada fase.
+- Si un bloque falla a la mitad, se reporta qué fases quedaron verificadas.
+
+## ADR-004 — MCP: solo context7
+Fecha: 2026-10-07
+Estado: Aceptado
+
+**Contexto.**
+- Las librerías del stack (Next.js 16, React 19, Vitest 5) cambian rápido.
+- El conocimiento del modelo puede estar desactualizado.
+
+**Decisión.**
+- Se declara un solo servidor MCP en `.mcp.json`: context7, para leer la documentación de las librerías.
+- Se habilita con `enabledMcpjsonServers` en `.claude/settings.json`.
+- Por context7 solo salen nombres de librerías y preguntas técnicas genéricas.
+- Nunca salen rutas, ids REF-NN, datos del dentista ni datos bancarios (P1).
+
+**Consecuencias.**
+- La documentación consultada está al día.
+- Cualquier MCP nuevo necesita su propio ADR.
