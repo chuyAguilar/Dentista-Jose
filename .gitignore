@@ -1,0 +1,29 @@
+# Datos sensibles: fotos originales con datos bancarios. Nunca entran a git.
+info/
+
+# Dependencias
+node_modules/
+
+# Salidas de Next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Vercel
+.vercel/
+
+# Pruebas
+coverage/
+test-results/
+playwright-report/
+
+# Reportes locales de los agentes
+Claude outputs/
+
+# Entorno y sistema
+.env*
+!.env.example
+npm-debug.log*
+.DS_Store
+Thumbs.db

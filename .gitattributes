@@ -1,0 +1,10 @@
+# Texto con fin de línea LF en el repo, para que Windows y Vercel vean lo mismo.
+* text=auto eol=lf
+
+# Binarios
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff2 binary
