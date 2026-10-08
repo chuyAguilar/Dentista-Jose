@@ -29,14 +29,14 @@ Prioridades:
   - [B3 — El hook global no ve alias ni scripts](#b3--el-hook-global-no-ve-alias-ni-scripts)
   - [B4 — Falsos positivos de la palabra «info»](#b4--falsos-positivos-de-la-palabra-info)
   - [B5 — Pruebas de componente o de punta a punta](#b5--pruebas-de-componente-o-de-punta-a-punta)
-  - [B6 — Archivos .gitkeep que sobran](#b6--archivos-gitkeep-que-sobran)
   - [B7 — vercel.json para encabezados e instalación](#b7--verceljson-para-encabezados-e-instalación)
-  - [B8 — next dev crea AGENTS.md](#b8--next-dev-crea-agentsmd)
 - [Cerrados](#cerrados)
   - [A5 — Despliegue en Vercel y prueba en Android](#a5--despliegue-en-vercel-y-prueba-en-android)
   - [M4 — Probar el respaldo del copiado en Android](#m4--probar-el-respaldo-del-copiado-en-android)
   - [M6 — Etiquetas de los datos de pago](#m6--etiquetas-de-los-datos-de-pago)
   - [M5 — Metadatos para SEO y para compartir](#m5--metadatos-para-seo-y-para-compartir)
+  - [B6 — Archivos .gitkeep que sobran](#b6--archivos-gitkeep-que-sobran)
+  - [B8 — next dev crea AGENTS.md](#b8--next-dev-crea-agentsmd)
 
 ## Alta
 
@@ -152,23 +152,11 @@ Prioridades:
 - **De dónde viene:** plan 001, 2026-10-07.
 - **Para cerrarla:** solo si la interfaz crece. Nuevo ADR y versión comprobada con `npm view`.
 
-### B6 — Archivos .gitkeep que sobran
-- **Qué es:** `src/app/`, `src/content/` y `src/lib/` ya tienen código, pero conservan su `.gitkeep`.
-- **Por qué se pospone:** no estorban y borrarlos no lo pide el plan 001.
-- **De dónde viene:** bloque 1 de la meta 001, 2026-10-07.
-- **Para cerrarla:** borrarlos en cualquier bloque que toque esas carpetas.
-
 ### B7 — vercel.json para encabezados e instalación
 - **Qué es:** declarar en el repo los encabezados de seguridad y el Install Command, en vez de fijarlos en el panel de Vercel.
 - **Por qué se pospone:** los encabezados no cuentan en Lighthouse y `role-guard.mjs` no deja a `desarrollo` escribir `vercel.json` (ADR-009).
 - **De dónde viene:** plan 002, 2026-10-07.
 - **Para cerrarla:** solo si estorba. Permitir `vercel.json` en `role-guard.mjs` (sesión normal), con su prueba en el arnés.
-
-### B8 — next dev crea AGENTS.md
-- **Qué es:** Next 16.4 escribe `AGENTS.md` en la raíz cada vez que corre `next dev`, con instrucciones para agentes de IA. Si se borra, lo vuelve a crear. Se apaga con `agentRules: false` en `next.config.ts`, según el aviso del propio `next dev`.
-- **Por qué se pospone:** el plan 002 no toca `next.config.ts` ni `.gitignore`. Elegir entre apagarlo, ignorarlo o versionarlo es decisión del autor.
-- **De dónde viene:** bloque 1 de la meta 002, 2026-10-07 (prueba de `next dev -H`).
-- **Para cerrarla:** el autor elige. Recomendación: `agentRules: false` en `next.config.ts`, porque el arnés ya guía a los agentes desde `CLAUDE.md` y la documentación instalada. Mientras tanto, la guía 002 pide borrarlo después del paso 10.
 
 ## Cerrados
 
@@ -199,3 +187,17 @@ Prioridades:
 - **De dónde viene:** plan 001, 2026-10-07.
 - **Para cerrarla:** en la meta 004 (diseño y marca), con la vista previa del enlace comprobada en WhatsApp.
 - **Cerrada:** 2026-10-07, meta 004. Descripción, Open Graph con `og.png` de 1200×630, ícono SVG y color de tema. Falta ver la vista previa real en WhatsApp después del push.
+
+### B6 — Archivos .gitkeep que sobran
+- **Qué es:** `src/app/`, `src/content/` y `src/lib/` ya tienen código, pero conservan su `.gitkeep`.
+- **Por qué se pospone:** no estorban y borrarlos no lo pide el plan 001.
+- **De dónde viene:** bloque 1 de la meta 001, 2026-10-07.
+- **Para cerrarla:** borrarlos en cualquier bloque que toque esas carpetas.
+- **Cerrada:** 2026-10-07, meta 005. Borrados 6; queda el de `public/`, que sigue vacía.
+
+### B8 — next dev crea AGENTS.md
+- **Qué es:** Next 16.4 escribe `AGENTS.md` en la raíz cada vez que corre `next dev`, con instrucciones para agentes de IA. Si se borra, lo vuelve a crear. Se apaga con `agentRules: false` en `next.config.ts`, según el aviso del propio `next dev`.
+- **Por qué se pospone:** el plan 002 no toca `next.config.ts` ni `.gitignore`. Elegir entre apagarlo, ignorarlo o versionarlo es decisión del autor.
+- **De dónde viene:** bloque 1 de la meta 002, 2026-10-07 (prueba de `next dev -H`).
+- **Para cerrarla:** el autor elige. Recomendación: `agentRules: false` en `next.config.ts`, porque el arnés ya guía a los agentes desde `CLAUDE.md` y la documentación instalada. Mientras tanto, la guía 002 pide borrarlo después del paso 10.
+- **Cerrada:** 2026-10-07, meta 005. `agentRules: false` en `next.config.ts`; 0 archivos tras correr `next dev`.

@@ -68,7 +68,8 @@
 ## Trabajo en curso
 - Meta 001, esqueleto caminante: cerrada (`b5234c8`, `2ebaf76`). Falta la prueba del agente `pruebas`.
 - Meta 002, publicación: cerrada el 2026-10-07. C6 pospuesto (ADR-012).
-- Meta 003, página completa: commits `8e089a5` y `3caa260`, sin push. Falta la revisión del autor.
-- Meta 004, marca: fase 1 hecha el 2026-10-07, sin commit. Falta push, vista previa en WhatsApp y Lighthouse.
-- Orden fijado (ADR-012): 003 página completa · 004 marca y Lighthouse · 005 datos reales.
+- Meta 003, página completa: `8e089a5` y `3caa260`. Meta 004, marca: `5c5aba9`. Ambas sin push.
+- Meta 005, pulido: hecha el 2026-10-07, sin commit.
+- Pendiente de todas: prueba completa del autor en producción.
+- Orden fijado: 003 página completa · 004 marca y Lighthouse (ADR-012) · 005 pulido · 006 datos reales.
 - Etapa 2 (arnés) cerrada. Commit del bloque: `6921fce`.

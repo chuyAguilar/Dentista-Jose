@@ -113,6 +113,11 @@ describe("contenido de las secciones", () => {
     ]);
   });
 
+  it("meta 005: tres pasos para agendar, con título y descripción", () => {
+    expect(dentist.steps.map((s) => s.title)).toEqual(["Escríbeme", "Elige consultorio", "Confirma tu cita"]);
+    for (const s of dentist.steps) expect(s.description.length).toBeGreaterThan(20);
+  });
+
   it("los horarios avisan que son provisionales (A2)", () => {
     expect(dentist.hoursNote).toBe("Sujeto a cambios, confirma por WhatsApp.");
   });

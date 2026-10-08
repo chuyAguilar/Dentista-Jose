@@ -16,3 +16,4 @@
 - `2026-10-07-memory-estado-antes-bloque-3-002.md`: «Dónde estamos», «Siguiente», «Pendientes del autor» y «Cómo se verifica hoy» de memory.md, y «Trabajo en curso» de CONTEXT.md, antes del bloque 3 de la meta 002.
 - `2026-10-07-memory-estado-antes-meta-003.md`: «Dónde estamos», «Siguiente», «Pendientes del autor» y «Cómo se verifica hoy» de memory.md, y «Trabajo en curso» de CONTEXT.md, antes de la meta 003.
 - `2026-10-07-memory-estado-antes-meta-004.md`: «Dónde estamos», «Siguiente», «Pendientes del autor» y «Cómo se verifica hoy» de memory.md antes de la meta 004.
+- `2026-10-07-memory-estado-antes-meta-005.md`: «Dónde estamos», «Siguiente», «Pendientes del autor» y «Cómo se verifica hoy» de memory.md antes de la meta 005.

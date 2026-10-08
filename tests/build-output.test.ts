@@ -94,6 +94,12 @@ describe("C6: el HTML final lleva los datos", () => {
     expect(text).not.toContain("fonts.gstatic.com");
   });
 
+  it("meta 005: los pasos para agendar van en una lista ordenada", () => {
+    const list = html().match(/<ol class="steps">[\s\S]*?<\/ol>/)?.[0] ?? "";
+    expect(list.match(/<li>/g)).toHaveLength(dentist.steps.length);
+    for (const s of dentist.steps) expect(list).toContain(s.title);
+  });
+
   it("idioma es-MX", () => {
     expect(html()).toContain('<html lang="es-MX"');
   });

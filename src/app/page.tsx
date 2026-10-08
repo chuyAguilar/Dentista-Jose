@@ -130,6 +130,20 @@ export default function Home(): React.JSX.Element {
             <div className="cta">
               <h2 id="contact-heading">{texts.heading}</h2>
               <p>{texts.contactLead}</p>
+              <ol className="steps">
+                {dentist.steps.map((step, index) => (
+                  <li key={step.title}>
+                    <span className="step-number" aria-hidden="true">
+                      {index + 1}
+                    </span>
+                    <span>
+                      <strong>{step.title}</strong>
+                      <br />
+                      {step.description}
+                    </span>
+                  </li>
+                ))}
+              </ol>
               <a className="button whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                 <WhatsAppIcon className="icon" />
                 {texts.whatsappButton}

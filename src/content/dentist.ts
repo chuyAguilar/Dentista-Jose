@@ -10,6 +10,8 @@ export type Office = {
   hours: string;
 };
 
+export type Step = { title: string; description: string };
+
 export type DentistContent = {
   clinic: string;
   title: string;
@@ -23,6 +25,7 @@ export type DentistContent = {
   services: Service[];
   offices: Office[];
   hoursNote: string;
+  steps: Step[];
   bank: { name: string; holder: string; accountType: string; cardNumber: string };
   texts: {
     heading: string;
@@ -85,6 +88,12 @@ export const dentist: DentistContent = {
     },
   ],
   hoursNote: "Sujeto a cambios, confirma por WhatsApp.",
+  // Solo describe el camino que ya existe en la página; no promete nada del consultorio.
+  steps: [
+    { title: "Escríbeme", description: "Toca el botón de WhatsApp. El mensaje ya va escrito." },
+    { title: "Elige consultorio", description: "Dime si prefieres Tula o Pachuca y qué día te acomoda." },
+    { title: "Confirma tu cita", description: "Te respondo con la hora disponible y listo." },
+  ],
   bank: {
     name: "BBVA",
     holder: "José Ángel Jiménez",
