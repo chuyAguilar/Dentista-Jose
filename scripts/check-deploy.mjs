@@ -9,12 +9,15 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const WHATSAPP_HREF = /\bhref="(https:\/\/wa\.me\/[^"]*)"/;
 // Un nodo de texto con cuatro grupos de cuatro dígitos. Los dígitos salen del HTML; el script no guarda datos.
 const GROUPED_CARD = />\s*(\d{4}(?: \d{4}){3})\s*</;
+// Todos los enlaces externos y de llamada: detecta una versión vieja aunque WhatsApp y tarjeta no cambien.
+const LINK_HREF = /\bhref="((?:https:|tel:)[^"]*)"/g;
 const FETCH_TIMEOUT_MS = 20_000;
 
 export function extractMarkers(html) {
   return {
     whatsappHref: html.match(WHATSAPP_HREF)?.[1] ?? null,
     groupedCard: html.match(GROUPED_CARD)?.[1] ?? null,
+    links: [...new Set([...html.matchAll(LINK_HREF)].map((m) => m[1]))].sort().join(" | ") || null,
   };
 }
 
@@ -47,6 +50,7 @@ export function checkDeploy(localHtml, remote) {
   const pairs = [
     ["el enlace de WhatsApp", local.whatsappHref, published.whatsappHref],
     ["la tarjeta agrupada", local.groupedCard, published.groupedCard],
+    ["la lista de enlaces", local.links, published.links],
   ];
   for (const [name, expected, found] of pairs) {
     if (expected === null) problems.push(`out/index.html no trae ${name}`);
@@ -67,7 +71,7 @@ function report(result, markers, asJson) {
   if (asJson) {
     console.log(JSON.stringify({ ok: result.ok, problems: result.problems, markers }));
   } else if (result.ok) {
-    console.log("Coincide: estado 200, https y los dos marcadores iguales a out/index.html.");
+    console.log("Coincide: estado 200, https y los tres marcadores iguales a out/index.html.");
   } else {
     console.log("No coincide:");
     for (const problem of result.problems) console.log(`- ${problem}`);

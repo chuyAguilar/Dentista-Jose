@@ -47,7 +47,7 @@
 - Git 2.51.1. Python 3.10.11 instalado, pero no se usa en el proyecto.
 - No están instalados pnpm ni la CLI de Vercel.
 - Git Credential Manager 2.6.1 viene con Git para Windows (comprobado el 2026-10-07).
-- Rama principal: `main`. Remoto `origin`: repositorio privado en GitHub. Vercel publica `main` en producción (ADR-009).
+- Rama principal: `master` (no se renombró a `main`). Remoto `origin`: repositorio privado en GitHub, rama por defecto `master`. Vercel publica `master` en producción (ADR-009).
 - URL de producción: https://dentista-jose.vercel.app
 - Prueba por la red local: `npm run dev -- -H <IP-de-la-PC>`. Con la IP exacta no hace falta `allowedDevOrigins`.
 

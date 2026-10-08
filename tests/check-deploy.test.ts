@@ -55,6 +55,15 @@ describe("check-deploy (C2 y C3, sin red)", () => {
     expect(result.problems.some((problem) => problem.includes("tarjeta"))).toBe(true);
   });
 
+  it("sin un enlace de mapas (versión vieja): código 1 y un problema que nombra los enlaces", () => {
+    const original = readFileSync(INDEX, "utf8");
+    const first = original.match(/href="https:\/\/www\.google\.com\/maps\/[^"]*"/)?.[0];
+    expect(first).toBeDefined();
+    const { status, result } = run(["--html", writeVariant("sin-mapa.html", original.split(first!).join('href="#"'))]);
+    expect(status).toBe(1);
+    expect(result.problems.some((problem) => problem.includes("enlaces"))).toBe(true);
+  });
+
   it("una URL http:// sale con 1 y «no es https», sin pedir la página", () => {
     // 192.0.2.1 es una dirección reservada para documentación: si el script la pidiera, tardaría o fallaría distinto.
     const { status, result } = run(["http://192.0.2.1/"]);

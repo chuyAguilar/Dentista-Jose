@@ -20,7 +20,7 @@ Spec activo: specs/003-pagina-completa/
 - Meta 001 cerrada: `b5234c8`, `2ebaf76`. Etapa 2 cerrada: `6921fce`.
 
 ## Siguiente
-1. El autor hace el commit (cierre 002 + bloque 1 de la 003) y el push. Vercel publica solo.
+1. Commit `8e089a5` hecho (cierre 002 + bloque 1 de la 003). Falta el push de `master` y el commit del refuerzo de `check-deploy`. Vercel publica solo.
 2. Fase 3 de la 003 (autor): revisar la página en el teléfono y tocar «Cómo llegar» de Tula y Pachuca (M7).
 3. Después se corre `check-deploy` contra producción y se cierra la 003.
 - Después: 004 marca (logotipo, fuente, vista previa al compartir, Lighthouse) · 005 datos reales.
@@ -77,3 +77,5 @@ Solo por id. Los originales están en `info/` y ningún agente los lee (P1).
 - `next dev` crea `AGENTS.md` en la raíz (B8). No entra a git sin decisión del autor.
 - Red local: `npm run dev -- -H <IP>`. Con `-H 0.0.0.0` o sin `-H`, Next 16.4 responde 403 a sus recursos de desarrollo pedidos desde otra dirección.
 - En Windows, salir con `process.exit` tras un `fetch` puede romper libuv (código 127). `check-deploy.mjs` usa `process.exitCode`.
+- En la herramienta Bash, un heredoc puede perder o convertir las barras invertidas (`\b` salió como el byte 0x08). Código con `\`: editar con Edit o Write, no con heredoc.
+- `check-deploy` compara también la lista de enlaces `https:` y `tel:`. Con solo WhatsApp y tarjeta, una versión vieja en producción pasaba con 0.
