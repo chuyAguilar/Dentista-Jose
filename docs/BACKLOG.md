@@ -12,15 +12,22 @@ Prioridades:
   - [A1 — CLABE de BBVA](#a1--clabe-de-bbva)
   - [A2 — Horarios reales por consultorio](#a2--horarios-reales-por-consultorio)
   - [A3 — Prueba en iPhone](#a3--prueba-en-iphone)
+  - [A4 — Lighthouse móvil completo](#a4--lighthouse-móvil-completo)
+  - [A5 — Despliegue en Vercel y prueba en Android](#a5--despliegue-en-vercel-y-prueba-en-android)
 - [Media](#media)
   - [M1 — Dominio propio](#m1--dominio-propio)
   - [M2 — Medir clics en los botones](#m2--medir-clics-en-los-botones)
   - [M3 — Los roles pueden escribir por Bash](#m3--los-roles-pueden-escribir-por-bash)
+  - [M4 — Probar el respaldo del copiado en Android](#m4--probar-el-respaldo-del-copiado-en-android)
+  - [M5 — Metadatos para SEO y para compartir](#m5--metadatos-para-seo-y-para-compartir)
+  - [M6 — Etiquetas de los datos de pago](#m6--etiquetas-de-los-datos-de-pago)
 - [Baja](#baja)
   - [B1 — Subir a TypeScript 7](#b1--subir-a-typescript-7)
   - [B2 — Paquetes «extraneous» en npm ls](#b2--paquetes-extraneous-en-npm-ls)
   - [B3 — El hook global no ve alias ni scripts](#b3--el-hook-global-no-ve-alias-ni-scripts)
   - [B4 — Falsos positivos de la palabra «info»](#b4--falsos-positivos-de-la-palabra-info)
+  - [B5 — Pruebas de componente o de punta a punta](#b5--pruebas-de-componente-o-de-punta-a-punta)
+  - [B6 — Archivos .gitkeep que sobran](#b6--archivos-gitkeep-que-sobran)
 - [Cerrados](#cerrados)
 
 ## Alta
@@ -43,6 +50,18 @@ Prioridades:
 - **De dónde viene:** Etapa 1, ronda 3, 2026-10-07.
 - **Para cerrarla:** alguien con iPhone sigue el protocolo de prueba en hardware y reporta sí/no por botón.
 
+### A4 — Lighthouse móvil completo
+- **Qué es:** medir Lighthouse móvil ≥ 90 en las cuatro categorías (P9).
+- **Por qué se pospone:** la meta 001 mide el peso con un script propio (ADR-005).
+- **De dónde viene:** plan 001, 2026-10-07.
+- **Para cerrarla:** en la meta 002, correr Lighthouse sobre la URL de Vercel y reportar los cuatro puntajes.
+
+### A5 — Despliegue en Vercel y prueba en Android
+- **Qué es:** publicar en Vercel (vista previa y producción) y correr `/prueba-android` con HTTPS real (antes C8 de la meta 001).
+- **Por qué se pospone:** sin HTTPS, Chrome en Android no deja copiar al portapapeles. El autor prefirió esperar a Vercel (clarify 001 #1).
+- **De dónde viene:** plan y clarify 001, 2026-10-07.
+- **Para cerrarla:** en la meta 002, desplegar y obtener 9 de 9 en `/prueba-android`.
+
 ## Media
 
 ### M1 — Dominio propio
@@ -62,6 +81,24 @@ Prioridades:
 - **Por qué se pospone:** analizar todo comando de shell es frágil. Los roles con Bash son `direccion`, `desarrollo` y `pruebas`.
 - **De dónde viene:** Fase 2.8, 2026-10-07.
 - **Para cerrarla:** que el hook de rol niegue en Bash las redirecciones y `tee` hacia rutas fuera del rol, con sus pruebas. Mientras tanto, `git diff` del autor antes de cada commit lo detecta.
+
+### M4 — Probar el respaldo del copiado en Android
+- **Qué es:** forzar el fallo del portapapeles y comprobar que aparece el campo con los 16 dígitos y «Mantén presionado para copiar».
+- **Por qué se pospone:** la lógica del respaldo se prueba con Vitest en la 001; falta verlo en un teléfono.
+- **De dónde viene:** plan 001, 2026-10-07.
+- **Para cerrarla:** un paso extra en `/prueba-android` durante la meta 002.
+
+### M5 — Metadatos para SEO y para compartir
+- **Qué es:** descripción, Open Graph e ícono, para que el enlace se vea bien al compartirlo por WhatsApp.
+- **Por qué se pospone:** no es parte del esqueleto caminante.
+- **De dónde viene:** plan 001, 2026-10-07.
+- **Para cerrarla:** en la meta 002, con la vista previa del enlace comprobada en WhatsApp.
+
+### M6 — Etiquetas de los datos de pago
+- **Qué es:** poner «Banco», «Titular» y «Tarjeta» junto a cada dato del bloque de pago.
+- **Por qué se pospone:** esos textos no están aprobados (P8, clarify 001 #9). En la 001 los datos van sin etiqueta.
+- **De dónde viene:** bloque 1 de la meta 001, 2026-10-07.
+- **Para cerrarla:** el autor aprueba los textos en la meta 002 y van a `src/content/`.
 
 ## Baja
 
@@ -88,6 +125,18 @@ Prioridades:
 - **Por qué se pospone:** se prefiere negar de más (P1). Para versiones existe `npm view`.
 - **De dónde viene:** Fase 2.8, 2026-10-07.
 - **Para cerrarla:** solo si estorba. Afinar la expresión de `guard.mjs` y agregar el caso a las pruebas.
+
+### B5 — Pruebas de componente o de punta a punta
+- **Qué es:** Testing Library o Playwright para probar la interfaz en automático.
+- **Por qué se pospone:** con una sola página, la lógica en `src/lib/` y la prueba en Android bastan (ADR-006).
+- **De dónde viene:** plan 001, 2026-10-07.
+- **Para cerrarla:** solo si la interfaz crece. Nuevo ADR y versión comprobada con `npm view`.
+
+### B6 — Archivos .gitkeep que sobran
+- **Qué es:** `src/app/`, `src/content/` y `src/lib/` ya tienen código, pero conservan su `.gitkeep`.
+- **Por qué se pospone:** no estorban y borrarlos no lo pide el plan 001.
+- **De dónde viene:** bloque 1 de la meta 001, 2026-10-07.
+- **Para cerrarla:** borrarlos en cualquier bloque que toque esas carpetas.
 
 ## Cerrados
 - Ninguno todavía.

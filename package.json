@@ -9,8 +9,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "pretest": "next build",
     "test": "vitest run",
-    "test:harness": "vitest run tests/harness.test.ts"
+    "test:harness": "vitest run tests/harness.test.ts",
+    "weight": "node scripts/measure-weight.mjs"
   },
   "dependencies": {
     "next": "16.4.0",

@@ -8,6 +8,9 @@ Registro aditivo. Un ADR viejo nunca se reescribe: se marca «Superseded por ADR
 - [ADR-002 — Stack: Next.js en Vercel](#adr-002--stack-nextjs-en-vercel)
 - [ADR-003 — Trabajo por bloques con un commit por bloque](#adr-003--trabajo-por-bloques-con-un-commit-por-bloque)
 - [ADR-004 — MCP: solo context7](#adr-004--mcp-solo-context7)
+- [ADR-005 — Medición del peso de la página](#adr-005--medición-del-peso-de-la-página)
+- [ADR-006 — Pruebas de la interfaz en la meta 001](#adr-006--pruebas-de-la-interfaz-en-la-meta-001)
+- [ADR-007 — npm test construye antes de probar](#adr-007--npm-test-construye-antes-de-probar)
 
 ## ADR-001 — Adopción del arnés de contexto y del flujo SDD
 Fecha: 2026-10-07
@@ -89,3 +92,50 @@ Estado: Aceptado
 **Consecuencias.**
 - La documentación consultada está al día.
 - Cualquier MCP nuevo necesita su propio ADR.
+
+## ADR-005 — Medición del peso de la página
+Fecha: 2026-10-07
+Estado: Aceptado (plan 001, clarify #2 y #7)
+
+**Contexto.**
+- P9 pide ≤ 500 KB transferidos. Lighthouse agrega una dependencia grande y necesita Chrome.
+
+**Decisión.**
+- Un script propio (`scripts/measure-weight.mjs`) suma el gzip nivel 9 de `out/index.html` y de los recursos locales que referencia.
+- «500 KB» significa 500 000 bytes gzip, la lectura más estricta.
+- Lighthouse completo llega en la meta 002 (A4).
+
+**Consecuencias.**
+- La medición es repetible, sin red y sin dependencias.
+- Gzip pesa más que Brotli, que Vercel puede usar: el número real es igual o menor.
+
+## ADR-006 — Pruebas de la interfaz en la meta 001
+Fecha: 2026-10-07
+Estado: Aceptado (plan 001, clarify #3)
+
+**Contexto.**
+- El botón «Copiar» es el único componente con comportamiento.
+- jsdom no reproduce el portapapeles real de Android.
+
+**Decisión.**
+- Sin Testing Library, jsdom ni Playwright en la meta 001.
+- La lógica del copiado vive en `src/lib/` con el portapapeles inyectado y se prueba con Vitest.
+- El HTML final se prueba como texto. El botón real se prueba en Android en la meta 002.
+
+**Consecuencias.**
+- Cero dependencias nuevas. P7 se cumple.
+- El componente React no tiene prueba automática (B5).
+
+## ADR-007 — npm test construye antes de probar
+Fecha: 2026-10-07
+Estado: Aceptado (plan 001, clarify #8)
+
+**Contexto.**
+- Las pruebas de C6 y C7 leen `out/`. Un `out/` viejo pasaría sin avisar.
+
+**Decisión.**
+- `pretest` corre `next build`. `npm run test:harness` no construye.
+
+**Consecuencias.**
+- `npm ci && npm test` en un clon limpio da el mismo resultado (P6).
+- `npm test` tarda más. El tiempo se reporta en `memory.md`.

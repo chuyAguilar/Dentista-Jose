@@ -59,7 +59,7 @@
 - **REF-NN:** id de un dato de referencia original en `info/`.
 
 ## Trabajo en curso
-- Meta: arnés del proyecto (Etapa 2).
-- Hecho: esqueleto (2.1), constitución (2.2), memoria y docs (2.3).
-- Hecho en un bloque (ADR-003): CLAUDE.md, plantilla SDD, roles, rutinas, guardarraíles, MCP y pruebas del arnés (2.4–2.10).
-- Falta: commit del bloque por el autor. Después, Etapa 3 (meta 001).
+- Meta: 001, esqueleto caminante. Spec aprobado y plan autorizado el 2026-10-07.
+- Bloque 1 (fases 1–4): implementado, 125/125 en verde. Esperando el commit del autor.
+- Bloque 2 (fase 5): `/paridad-tarjeta` del autor. C8 (Android) pasó a la meta 002.
+- Etapa 2 (arnés) cerrada. Commit del bloque: `6921fce`.

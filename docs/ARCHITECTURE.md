@@ -21,12 +21,12 @@ Este archivo describe la estructura. Solo cambia si cambia la estructura.
 ## Componentes
 | Componente | Ruta | Responsabilidad | Estado |
 |---|---|---|---|
-| Contenido | `src/content/` | Datos del dentista: nombre, cédulas, servicios, consultorios, horarios, contacto, banco. Solo datos. | meta 001 |
-| Lógica | `src/lib/` | Funciones puras: arma el enlace de WhatsApp y el de Google Maps, agrupa dígitos de tarjeta y CLABE. Sin React ni DOM. | meta 001 |
-| Interfaz | `src/app/` | La página y sus secciones. Lee el contenido y llama a la lógica. | meta 001 |
-| Botón de copiar | `src/app/` | Único componente de cliente. Copia al portapapeles el dato bancario. | meta 001 |
-| Estáticos | `public/` | Imágenes optimizadas y el ícono. | meta 001 |
-| Pruebas | `tests/` | Vitest para la lógica y el contenido. Playwright y Lighthouse para la página (por confirmar en el plan 001). | parcial |
+| Contenido | `src/content/` | Datos del dentista: nombre, cédulas, servicios, consultorios, horarios, contacto, banco. Solo datos. | hecho en 001: nombre, especialidad, teléfono, mensaje, banco y textos (`dentist.ts`). Resto: 002 |
+| Lógica | `src/lib/` | Funciones puras: arma el enlace de WhatsApp y el de Google Maps, agrupa dígitos de tarjeta y CLABE. Sin React ni DOM. | hecho en 001: WhatsApp, dígitos y copiado. Google Maps y CLABE: después |
+| Interfaz | `src/app/` | La página y sus secciones. Lee el contenido y llama a la lógica. | hecho en 001: página mínima. Secciones y diseño: 002 |
+| Botón de copiar | `src/app/` | Único componente de cliente. Copia al portapapeles el dato bancario. | hecho en 001 (`CopyButton.tsx`). Prueba en Android: 002 (A5) |
+| Estáticos | `public/` | Imágenes optimizadas y el ícono. | vacío. Meta 002 |
+| Pruebas | `tests/` | Vitest para la lógica y el contenido. Playwright y Lighthouse para la página (por confirmar en el plan 001). | Vitest: contenido, lógica y HTML final; peso con `scripts/measure-weight.mjs` (ADR-005, ADR-006). Lighthouse: 002 (A4) |
 
 ## Flujo de datos
 1. El autor revisa los datos y los escribe en `src/content/`.
