@@ -35,6 +35,8 @@
 | Peso máximo | 500 KB transferidos | Brief, P9. |
 | Lighthouse móvil mínimo | 90 en cuatro categorías | Brief, P9. |
 | Tono | de tú, cálido, español de México | Autor, P10. |
+| URL pública | https://dentista-jose.vercel.app | `src/content/site.ts`. Cambia con M1. |
+| Fuente | Plus Jakarta Sans, servida desde el sitio | clarify 004 #1. |
 - Los números completos viven solo en `src/content/`. No se copian a la documentación.
 
 ## Variables de entorno
@@ -66,6 +68,7 @@
 ## Trabajo en curso
 - Meta 001, esqueleto caminante: cerrada (`b5234c8`, `2ebaf76`). Falta la prueba del agente `pruebas`.
 - Meta 002, publicación: cerrada el 2026-10-07. C6 pospuesto (ADR-012).
-- Meta 003, página completa: bloque 1 hecho el 2026-10-07, sin commit. Falta el push y la revisión del autor.
+- Meta 003, página completa: commits `8e089a5` y `3caa260`, sin push. Falta la revisión del autor.
+- Meta 004, marca: fase 1 hecha el 2026-10-07, sin commit. Falta push, vista previa en WhatsApp y Lighthouse.
 - Orden fijado (ADR-012): 003 página completa · 004 marca y Lighthouse · 005 datos reales.
 - Etapa 2 (arnés) cerrada. Commit del bloque: `6921fce`.

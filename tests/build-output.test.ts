@@ -73,6 +73,27 @@ describe("C6: el HTML final lleva los datos", () => {
     }
   });
 
+  it("meta 004: vista previa al compartir con URL absoluta y PNG de 1200×630", () => {
+    const text = html();
+    expect(text).toContain('<meta property="og:image" content="https://dentista-jose.vercel.app/og.png"/>');
+    expect(text).toContain('<meta property="og:locale" content="es_MX"/>');
+    expect(text).toContain(`<meta property="og:description" content="${dentist.tagline}"/>`);
+    const png = readFileSync(path.join(ROOT, "out", "og.png"));
+    // Firma PNG y, en el encabezado IHDR, ancho y alto en bytes 16–23.
+    expect(png.subarray(0, 8).toString("hex")).toBe("89504e470d0a1a0a");
+    expect(png.readUInt32BE(16)).toBe(1200);
+    expect(png.readUInt32BE(20)).toBe(630);
+  });
+
+  it("meta 004: ícono SVG, color de tema y fuente servida desde el sitio", () => {
+    const text = html();
+    expect(text).toMatch(/<link rel="icon" href="\/icon\.svg[^"]*" sizes="any" type="image\/svg\+xml"\/>/);
+    expect(text).toContain('<meta name="theme-color" content="#0b2d5b"/>');
+    expect(text).toMatch(/href="\/_next\/static\/media\/[^"]+\.woff2"/);
+    expect(text).not.toContain("fonts.googleapis.com");
+    expect(text).not.toContain("fonts.gstatic.com");
+  });
+
   it("idioma es-MX", () => {
     expect(html()).toContain('<html lang="es-MX"');
   });

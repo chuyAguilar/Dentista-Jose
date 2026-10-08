@@ -15,11 +15,11 @@ Prioridades:
   - [A4 — Lighthouse móvil completo](#a4--lighthouse-móvil-completo)
   - [A7 — Plan de Vercel para uso comercial](#a7--plan-de-vercel-para-uso-comercial)
   - [A8 — Correo del dentista](#a8--correo-del-dentista)
+  - [A9 — Logotipo real del consultorio](#a9--logotipo-real-del-consultorio)
 - [Media](#media)
   - [M1 — Dominio propio](#m1--dominio-propio)
   - [M2 — Medir clics en los botones](#m2--medir-clics-en-los-botones)
   - [M3 — Los roles pueden escribir por Bash](#m3--los-roles-pueden-escribir-por-bash)
-  - [M5 — Metadatos para SEO y para compartir](#m5--metadatos-para-seo-y-para-compartir)
   - [M7 — Pasos de mapas en la prueba de Android](#m7--pasos-de-mapas-en-la-prueba-de-android)
   - [M8 — Correr npm test en cada push](#m8--correr-npm-test-en-cada-push)
   - [M9 — Qué cédula va con qué título](#m9--qué-cédula-va-con-qué-título)
@@ -36,6 +36,7 @@ Prioridades:
   - [A5 — Despliegue en Vercel y prueba en Android](#a5--despliegue-en-vercel-y-prueba-en-android)
   - [M4 — Probar el respaldo del copiado en Android](#m4--probar-el-respaldo-del-copiado-en-android)
   - [M6 — Etiquetas de los datos de pago](#m6--etiquetas-de-los-datos-de-pago)
+  - [M5 — Metadatos para SEO y para compartir](#m5--metadatos-para-seo-y-para-compartir)
 
 ## Alta
 
@@ -75,6 +76,12 @@ Prioridades:
 - **De dónde viene:** meta 003, 2026-10-07.
 - **Para cerrarla:** el autor da el correo por escrito. Va a `src/content/` con su prueba.
 
+### A9 — Logotipo real del consultorio
+- **Qué es:** usar el logotipo de «Integración Dental» (REF-04) en la barra, el ícono y la imagen para compartir.
+- **Por qué se pospone:** solo existe en la referencia, que ningún agente abre (P1). Hoy se usa un diente dibujado.
+- **De dónde viene:** meta 004, 2026-10-07.
+- **Para cerrarla:** el autor pone el logotipo en SVG o PNG en `public/` (sin datos bancarios en la imagen) y avisa.
+
 ## Media
 
 ### M1 — Dominio propio
@@ -94,12 +101,6 @@ Prioridades:
 - **Por qué se pospone:** analizar todo comando de shell es frágil. Los roles con Bash son `direccion`, `desarrollo` y `pruebas`.
 - **De dónde viene:** Fase 2.8, 2026-10-07.
 - **Para cerrarla:** que el hook de rol niegue en Bash las redirecciones y `tee` hacia rutas fuera del rol, con sus pruebas. Mientras tanto, `git diff` del autor antes de cada commit lo detecta.
-
-### M5 — Metadatos para SEO y para compartir
-- **Qué es:** descripción, Open Graph e ícono, para que el enlace se vea bien al compartirlo por WhatsApp.
-- **Por qué se pospone:** no es parte del esqueleto caminante.
-- **De dónde viene:** plan 001, 2026-10-07.
-- **Para cerrarla:** en la meta 004 (diseño y marca), con la vista previa del enlace comprobada en WhatsApp.
 
 ### M7 — Pasos de mapas en la prueba de Android
 - **Qué es:** los pasos 7 y 8 de `/prueba-android` («Cómo llegar» a Tula y a Pachuca).
@@ -191,3 +192,10 @@ Prioridades:
 - **De dónde viene:** bloque 1 de la meta 001, 2026-10-07.
 - **Para cerrarla:** el autor aprueba los textos en la meta 003 (secciones completas) y van a `src/content/`.
 - **Cerrada:** 2026-10-07, meta 003. Etiquetas «Tarjeta de débito» y «Titular» en `src/content/` (tácito, ADR-008; el autor las revisa en la paridad).
+
+### M5 — Metadatos para SEO y para compartir
+- **Qué es:** descripción, Open Graph e ícono, para que el enlace se vea bien al compartirlo por WhatsApp.
+- **Por qué se pospone:** no es parte del esqueleto caminante.
+- **De dónde viene:** plan 001, 2026-10-07.
+- **Para cerrarla:** en la meta 004 (diseño y marca), con la vista previa del enlace comprobada en WhatsApp.
+- **Cerrada:** 2026-10-07, meta 004. Descripción, Open Graph con `og.png` de 1200×630, ícono SVG y color de tema. Falta ver la vista previa real en WhatsApp después del push.
