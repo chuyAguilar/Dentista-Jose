@@ -60,6 +60,7 @@
 
 ## Trabajo en curso
 - Meta: 001, esqueleto caminante. Spec aprobado y plan autorizado el 2026-10-07.
-- Bloque 1 (fases 1–4): implementado, 125/125 en verde. Esperando el commit del autor.
-- Bloque 2 (fase 5): `/paridad-tarjeta` del autor. C8 (Android) pasó a la meta 002.
+- Bloque 1 (fases 1–4): commit `b5234c8`, 125/125 en verde.
+- Bloque 2 (fase 5): paridad 7 de 7, firmada por el autor. C8 (Android) pasó a la meta 002.
+- Falta: prueba independiente del agente `pruebas`.
 - Etapa 2 (arnés) cerrada. Commit del bloque: `6921fce`.
