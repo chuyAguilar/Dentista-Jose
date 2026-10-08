@@ -61,6 +61,59 @@ describe("contenido del dentista", () => {
       copy: "Copiar",
       copied: "Copiado",
       copyFallback: "Mantén presionado para copiar",
+      servicesHeading: "Servicios",
+      officesHeading: "Consultorios",
+      directions: "Cómo llegar",
+      contactLead: "Escríbeme y te respondo para apartar el día y la hora que mejor te queden.",
+      paymentLead: "Puedes depositar o transferir a esta tarjeta. Toca «Copiar» y pega el número en la app de tu banco.",
+      paymentNav: "Datos para tu pago",
+      holderLabel: "Titular",
+      cardLabel: "Tarjeta de débito",
+      licensesLabel: "Cédulas profesionales",
+      callLabel: "Llamar",
     });
+  });
+});
+
+// Meta 003: secciones completas. Cada dato contra el brief, carácter por carácter (P8).
+describe("contenido de las secciones", () => {
+  it("consultorio y profesión", () => {
+    expect(dentist.clinic).toBe("Integración Dental");
+    expect(dentist.profession).toBe("Cirujano Dentista");
+  });
+
+  it("cédulas: dos números exactos de 7 dígitos", () => {
+    expect(dentist.licenses).toEqual(["3490657", "6595318"]);
+    for (const license of dentist.licenses) expect(license).toMatch(/^\d{7}$/);
+  });
+
+  it("servicios: ortodoncia e implantes", () => {
+    expect(dentist.services.map((s) => s.title)).toEqual(["Ortodoncia", "Implantes"]);
+    for (const s of dentist.services) expect(s.description.length).toBeGreaterThan(20);
+  });
+
+  it("dos consultorios con su dirección exacta", () => {
+    expect(dentist.offices).toEqual([
+      {
+        id: "tula",
+        name: "Consultorio Tula",
+        street: "Cerrada Luis Monroy 101 A",
+        area: "Col. San Marcos",
+        city: "Tula, Hgo.",
+        hours: "Lunes a sábado, 8:00 a 18:00",
+      },
+      {
+        id: "pachuca",
+        name: "Consultorio Pachuca",
+        street: "Blvd. Valle de San Javier 528",
+        area: "C.P. 42080",
+        city: "Pachuca, Hgo.",
+        hours: "Lunes a sábado, 8:00 a 18:00",
+      },
+    ]);
+  });
+
+  it("los horarios avisan que son provisionales (A2)", () => {
+    expect(dentist.hoursNote).toBe("Sujeto a cambios, confirma por WhatsApp.");
   });
 });

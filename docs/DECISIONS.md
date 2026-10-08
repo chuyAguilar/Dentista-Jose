@@ -15,6 +15,7 @@ Registro aditivo. Un ADR viejo nunca se reescribe: se marca «Superseded por ADR
 - [ADR-009 — Publicación con GitHub privado y Vercel](#adr-009--publicación-con-github-privado-y-vercel)
 - [ADR-010 — Lighthouse con PageSpeed Insights](#adr-010--lighthouse-con-pagespeed-insights)
 - [ADR-011 — Verificación del despliegue con check-deploy](#adr-011--verificación-del-despliegue-con-check-deploy)
+- [ADR-012 — Página completa en la 003 y Lighthouse al final de la 004](#adr-012--página-completa-en-la-003-y-lighthouse-al-final-de-la-004)
 
 ## ADR-001 — Adopción del arnés de contexto y del flujo SDD
 Fecha: 2026-10-07
@@ -210,3 +211,20 @@ Estado: Aceptado (plan 002, clarify #8; tácito, ADR-008)
 
 **Consecuencias.**
 - C2 y C3 se repiten con un comando. La prueba de la suite no depende de internet.
+
+## ADR-012 — Página completa en la 003 y Lighthouse al final de la 004
+Fecha: 2026-10-07
+Estado: Aceptado (pedido del autor)
+
+**Contexto.**
+- La meta 002 cumplió C1 a C5 y C7. La API de PageSpeed sin clave dio 429 y C6 quedó sin número.
+- El autor dijo: «dejemos estas pruebas, quiero seguir avanzando, aun se ve bien basica la web, estas pruebas no nos están aportando nada».
+
+**Decisión.**
+- La meta 002 se cierra con C6 pospuesto. A4 sigue abierto.
+- La meta 003 junta las secciones completas y el diseño visual. La 004 queda para marca: logotipo, fuente y vista previa al compartir (M5).
+- Lighthouse se mide una sola vez, al cerrar la 004, cuando la página ya no cambie de forma.
+
+**Consecuencias.**
+- Menos mediciones intermedias que se vuelven viejas con cada cambio de diseño.
+- Hasta la 004 no hay número de Lighthouse. El peso (P9) se sigue midiendo en cada bloque.

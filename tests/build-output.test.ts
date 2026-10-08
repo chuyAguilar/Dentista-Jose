@@ -43,6 +43,36 @@ describe("C6: el HTML final lleva los datos", () => {
     }
   });
 
+  it("meta 003: secciones, cédulas y direcciones visibles", () => {
+    const text = html();
+    for (const value of [
+      dentist.clinic,
+      dentist.texts.servicesHeading,
+      dentist.texts.officesHeading,
+      dentist.hoursNote,
+      ...dentist.licenses,
+      ...dentist.services.map((s) => s.title),
+      ...dentist.offices.flatMap((o) => [o.name, o.street, o.city]),
+    ]) {
+      expect(text).toContain(value);
+    }
+  });
+
+  it("meta 003: un enlace de mapas por consultorio y el de llamada", () => {
+    const text = html();
+    expect(text.match(/href="https:\/\/www\.google\.com\/maps\/search\/\?api=1&amp;query=/g)).toHaveLength(2);
+    expect(text).toContain('href="tel:+527711437889"');
+  });
+
+  it("meta 003: los enlaces externos abren aparte y sin opener", () => {
+    const external = html().match(/<a [^>]*href="https:[^"]*"[^>]*>/g) ?? [];
+    expect(external.length).toBeGreaterThanOrEqual(5);
+    for (const tag of external) {
+      expect(tag).toContain('target="_blank"');
+      expect(tag).toContain('rel="noopener noreferrer"');
+    }
+  });
+
   it("idioma es-MX", () => {
     expect(html()).toContain('<html lang="es-MX"');
   });

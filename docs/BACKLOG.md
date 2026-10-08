@@ -13,17 +13,16 @@ Prioridades:
   - [A2 — Horarios reales por consultorio](#a2--horarios-reales-por-consultorio)
   - [A3 — Prueba en iPhone](#a3--prueba-en-iphone)
   - [A4 — Lighthouse móvil completo](#a4--lighthouse-móvil-completo)
-  - [A5 — Despliegue en Vercel y prueba en Android](#a5--despliegue-en-vercel-y-prueba-en-android)
   - [A7 — Plan de Vercel para uso comercial](#a7--plan-de-vercel-para-uso-comercial)
+  - [A8 — Correo del dentista](#a8--correo-del-dentista)
 - [Media](#media)
   - [M1 — Dominio propio](#m1--dominio-propio)
   - [M2 — Medir clics en los botones](#m2--medir-clics-en-los-botones)
   - [M3 — Los roles pueden escribir por Bash](#m3--los-roles-pueden-escribir-por-bash)
-  - [M4 — Probar el respaldo del copiado en Android](#m4--probar-el-respaldo-del-copiado-en-android)
   - [M5 — Metadatos para SEO y para compartir](#m5--metadatos-para-seo-y-para-compartir)
-  - [M6 — Etiquetas de los datos de pago](#m6--etiquetas-de-los-datos-de-pago)
   - [M7 — Pasos de mapas en la prueba de Android](#m7--pasos-de-mapas-en-la-prueba-de-android)
   - [M8 — Correr npm test en cada push](#m8--correr-npm-test-en-cada-push)
+  - [M9 — Qué cédula va con qué título](#m9--qué-cédula-va-con-qué-título)
 - [Baja](#baja)
   - [B1 — Subir a TypeScript 7](#b1--subir-a-typescript-7)
   - [B2 — Paquetes «extraneous» en npm ls](#b2--paquetes-extraneous-en-npm-ls)
@@ -34,6 +33,9 @@ Prioridades:
   - [B7 — vercel.json para encabezados e instalación](#b7--verceljson-para-encabezados-e-instalación)
   - [B8 — next dev crea AGENTS.md](#b8--next-dev-crea-agentsmd)
 - [Cerrados](#cerrados)
+  - [A5 — Despliegue en Vercel y prueba en Android](#a5--despliegue-en-vercel-y-prueba-en-android)
+  - [M4 — Probar el respaldo del copiado en Android](#m4--probar-el-respaldo-del-copiado-en-android)
+  - [M6 — Etiquetas de los datos de pago](#m6--etiquetas-de-los-datos-de-pago)
 
 ## Alta
 
@@ -59,19 +61,19 @@ Prioridades:
 - **Qué es:** medir Lighthouse móvil ≥ 90 en las cuatro categorías (P9).
 - **Por qué se pospone:** la meta 001 mide el peso con un script propio (ADR-005).
 - **De dónde viene:** plan 001, 2026-10-07.
-- **Para cerrarla:** en la meta 002, correr Lighthouse sobre la URL de Vercel y reportar los cuatro puntajes.
-
-### A5 — Despliegue en Vercel y prueba en Android
-- **Qué es:** publicar en Vercel (vista previa y producción) y correr `/prueba-android` con HTTPS real (antes C8 de la meta 001).
-- **Por qué se pospone:** sin HTTPS, Chrome en Android no deja copiar al portapapeles. El autor prefirió esperar a Vercel (clarify 001 #1).
-- **De dónde viene:** plan y clarify 001, 2026-10-07.
-- **Para cerrarla:** en la meta 002, desplegar y obtener 7 de 7 pasos aplicables en `/prueba-android` (pasos 7 y 8 en la meta 003, M7).
+- **Para cerrarla:** al cerrar la meta 004 (ADR-012), PageSpeed Insights móvil sobre producción, mediana de 3 corridas, ≥ 90 en las cuatro categorías.
 
 ### A7 — Plan de Vercel para uso comercial
 - **Qué es:** decidir el plan de Vercel antes de anunciar la página a los pacientes.
 - **Por qué se pospone:** según el plan 002, las reglas de Vercel limitan el plan Hobby (gratis) al uso personal y no comercial. La página es de un consultorio. Hay que leer el texto vigente en la página de precios de Vercel.
 - **De dónde viene:** plan 002, clarify #12, 2026-10-07.
 - **Para cerrarla:** el autor lee las reglas vigentes y elige el plan (Hobby, Pro u otro hosting) antes del lanzamiento. Si cambia el hosting, nuevo ADR.
+
+### A8 — Correo del dentista
+- **Qué es:** mostrar el correo de la tarjeta de presentación en el pie.
+- **Por qué se pospone:** solo está en la referencia (REF-01, REF-03) y ningún agente la lee (P1). No se adivina.
+- **De dónde viene:** meta 003, 2026-10-07.
+- **Para cerrarla:** el autor da el correo por escrito. Va a `src/content/` con su prueba.
 
 ## Media
 
@@ -93,35 +95,29 @@ Prioridades:
 - **De dónde viene:** Fase 2.8, 2026-10-07.
 - **Para cerrarla:** que el hook de rol niegue en Bash las redirecciones y `tee` hacia rutas fuera del rol, con sus pruebas. Mientras tanto, `git diff` del autor antes de cada commit lo detecta.
 
-### M4 — Probar el respaldo del copiado en Android
-- **Qué es:** forzar el fallo del portapapeles y comprobar que aparece el campo con los 16 dígitos y «Mantén presionado para copiar».
-- **Por qué se pospone:** la lógica del respaldo se prueba con Vitest en la 001; falta verlo en un teléfono.
-- **De dónde viene:** plan 001, 2026-10-07.
-- **Para cerrarla:** un paso extra en `/prueba-android` durante la meta 002.
-
 ### M5 — Metadatos para SEO y para compartir
 - **Qué es:** descripción, Open Graph e ícono, para que el enlace se vea bien al compartirlo por WhatsApp.
 - **Por qué se pospone:** no es parte del esqueleto caminante.
 - **De dónde viene:** plan 001, 2026-10-07.
 - **Para cerrarla:** en la meta 004 (diseño y marca), con la vista previa del enlace comprobada en WhatsApp.
 
-### M6 — Etiquetas de los datos de pago
-- **Qué es:** poner «Banco», «Titular» y «Tarjeta» junto a cada dato del bloque de pago.
-- **Por qué se pospone:** esos textos no están aprobados (P8, clarify 001 #9). En la 001 los datos van sin etiqueta.
-- **De dónde viene:** bloque 1 de la meta 001, 2026-10-07.
-- **Para cerrarla:** el autor aprueba los textos en la meta 003 (secciones completas) y van a `src/content/`.
-
 ### M7 — Pasos de mapas en la prueba de Android
 - **Qué es:** los pasos 7 y 8 de `/prueba-android` («Cómo llegar» a Tula y a Pachuca).
 - **Por qué se pospone:** los mapas no existen hasta la meta 003.
 - **De dónde viene:** plan 002, clarify #7, 2026-10-07.
-- **Para cerrarla:** en la meta 003, correr los pasos 7 y 8 sobre producción: 2 de 2 en «sí».
+- **Para cerrarla:** con la 003 publicada, el autor toca «Cómo llegar» de Tula y de Pachuca en Android: 2 de 2 en «sí».
 
 ### M8 — Correr npm test en cada push
 - **Qué es:** que cada push corra la suite antes de publicar (por ejemplo, en el build de Vercel o en GitHub Actions).
 - **Por qué se pospone:** hoy el autor corre `npm test` antes de cada commit; la meta 002 solo publica.
 - **De dónde viene:** plan 002, 2026-10-07.
 - **Para cerrarla:** elegir dónde corre la suite, con un ADR, y comprobar que un fallo detiene la publicación.
+
+### M9 — Qué cédula va con qué título
+- **Qué es:** decir cuál cédula es de Cirujano Dentista y cuál de la especialidad en Ortodoncia.
+- **Por qué se pospone:** el brief da los dos números sin asignarlos. Hoy se muestran como «Cédula 3490657» y «Cédula 6595318» (clarify 003 #3).
+- **De dónde viene:** meta 003, 2026-10-07.
+- **Para cerrarla:** el autor confirma el reparto con la tarjeta de papel.
 
 ## Baja
 
@@ -174,4 +170,24 @@ Prioridades:
 - **Para cerrarla:** el autor elige. Recomendación: `agentRules: false` en `next.config.ts`, porque el arnés ya guía a los agentes desde `CLAUDE.md` y la documentación instalada. Mientras tanto, la guía 002 pide borrarlo después del paso 10.
 
 ## Cerrados
-- Ninguno todavía.
+
+### A5 — Despliegue en Vercel y prueba en Android
+- **Qué es:** publicar en Vercel (vista previa y producción) y correr `/prueba-android` con HTTPS real (antes C8 de la meta 001).
+- **Por qué se pospone:** sin HTTPS, Chrome en Android no deja copiar al portapapeles. El autor prefirió esperar a Vercel (clarify 001 #1).
+- **De dónde viene:** plan y clarify 001, 2026-10-07.
+- **Para cerrarla:** en la meta 002, desplegar y obtener 7 de 7 pasos aplicables en `/prueba-android` (pasos 7 y 8 en la meta 003, M7).
+- **Cerrada:** 2026-10-07, meta 002. Producción en https://dentista-jose.vercel.app, `check-deploy` código 0, Android 7 de 7.
+
+### M4 — Probar el respaldo del copiado en Android
+- **Qué es:** forzar el fallo del portapapeles y comprobar que aparece el campo con los 16 dígitos y «Mantén presionado para copiar».
+- **Por qué se pospone:** la lógica del respaldo se prueba con Vitest en la 001; falta verlo en un teléfono.
+- **De dónde viene:** plan 001, 2026-10-07.
+- **Para cerrarla:** un paso extra en `/prueba-android` durante la meta 002.
+- **Cerrada:** 2026-10-07, meta 002. Paso 10 en «sí» por red local.
+
+### M6 — Etiquetas de los datos de pago
+- **Qué es:** poner «Banco», «Titular» y «Tarjeta» junto a cada dato del bloque de pago.
+- **Por qué se pospone:** esos textos no están aprobados (P8, clarify 001 #9). En la 001 los datos van sin etiqueta.
+- **De dónde viene:** bloque 1 de la meta 001, 2026-10-07.
+- **Para cerrarla:** el autor aprueba los textos en la meta 003 (secciones completas) y van a `src/content/`.
+- **Cerrada:** 2026-10-07, meta 003. Etiquetas «Tarjeta de débito» y «Titular» en `src/content/` (tácito, ADR-008; el autor las revisa en la paridad).

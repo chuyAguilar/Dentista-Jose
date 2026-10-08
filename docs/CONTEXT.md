@@ -20,6 +20,7 @@
 - Mientras no haya CLABE, solo se muestra la tarjeta BBVA (A1).
 - Los horarios son provisionales y se avisa al paciente que los confirme por WhatsApp (A2).
 - Fuera de la v1: citas en línea, cobro en línea, blog, galería, CMS y dominio propio.
+- Las cédulas se muestran sin título hasta que el autor diga cuál es cuál (M9).
 
 ## Parámetros por defecto
 | Parámetro | Valor | Origen |
@@ -46,7 +47,8 @@
 - Git 2.51.1. Python 3.10.11 instalado, pero no se usa en el proyecto.
 - No están instalados pnpm ni la CLI de Vercel.
 - Git Credential Manager 2.6.1 viene con Git para Windows (comprobado el 2026-10-07).
-- Rama local actual: `master`. La guía 002 la renombra a `main` antes del primer push.
+- Rama principal: `main`. Remoto `origin`: repositorio privado en GitHub. Vercel publica `main` en producción (ADR-009).
+- URL de producción: https://dentista-jose.vercel.app
 - Prueba por la red local: `npm run dev -- -H <IP-de-la-PC>`. Con la IP exacta no hace falta `allowedDevOrigins`.
 
 ## Glosario
@@ -63,6 +65,7 @@
 
 ## Trabajo en curso
 - Meta 001, esqueleto caminante: cerrada (`b5234c8`, `2ebaf76`). Falta la prueba del agente `pruebas`.
-- Meta 002, publicación: bloque 1 (fases 1–2) hecho el 2026-10-07, sin commit. Siguen las fases 3 y 4, del autor, con la guía `Claude outputs/002-publicacion/guia-publicar.md`.
-- Orden fijado: 002 publicación · 003 secciones · 004 diseño · 005 datos reales.
+- Meta 002, publicación: cerrada el 2026-10-07. C6 pospuesto (ADR-012).
+- Meta 003, página completa: bloque 1 hecho el 2026-10-07, sin commit. Falta el push y la revisión del autor.
+- Orden fijado (ADR-012): 003 página completa · 004 marca y Lighthouse · 005 datos reales.
 - Etapa 2 (arnés) cerrada. Commit del bloque: `6921fce`.

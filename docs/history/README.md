@@ -13,3 +13,5 @@
 - `2026-10-07-memory-estado-antes-spec-002.md`: «Dónde estamos», «Siguiente» y «Pendientes del autor» de memory.md antes del spec 002.
 - `2026-10-07-constitution-P2-antes-ADR-008.md`: P2 antes de la enmienda de ADR-008.
 - `2026-10-07-memory-estado-antes-bloque-1-002.md`: «Dónde estamos», «Siguiente», «Pendientes del autor» y «Cómo se verifica hoy» de memory.md, y «Trabajo en curso» de CONTEXT.md, antes del cierre del bloque 1 de la meta 002.
+- `2026-10-07-memory-estado-antes-bloque-3-002.md`: «Dónde estamos», «Siguiente», «Pendientes del autor» y «Cómo se verifica hoy» de memory.md, y «Trabajo en curso» de CONTEXT.md, antes del bloque 3 de la meta 002.
+- `2026-10-07-memory-estado-antes-meta-003.md`: «Dónde estamos», «Siguiente», «Pendientes del autor» y «Cómo se verifica hoy» de memory.md, y «Trabajo en curso» de CONTEXT.md, antes de la meta 003.

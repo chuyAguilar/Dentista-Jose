@@ -1,7 +1,7 @@
 # Spec 002 — publicación
 
 Última actualización: 2026-10-07
-Estado: aprobado por el autor el 2026-10-07 (tácito, ADR-008)
+Estado: aprobado por el autor el 2026-10-07 (tácito, ADR-008). Cerrada el 2026-10-07 con C6 pospuesto (ADR-012).
 
 ## Índice
 - [Por qué](#por-qué)

@@ -14,32 +14,31 @@ Tope: 12 KB. Lo que sale de aquí se copia literal a `docs/history/`.
 - [Trampas conocidas](#trampas-conocidas)
 
 ## Dónde estamos
-Spec activo: specs/002-publicacion/
-- Meta 002: bloque 1 (fases 1–2) hecho el 2026-10-07, sin commit. `scripts/check-deploy.mjs` con 4 pruebas; guía en `Claude outputs/002-publicacion/guia-publicar.md`.
-- Spec, plan y clarify 002 aprobados en tácito (ADR-008). ADR-009 a ADR-011 registrados.
-- Meta 001 cerrada: bloque 1 `b5234c8`, cierre `2ebaf76`, paridad 7 de 7. Falta la prueba del agente `pruebas`.
-- Etapa 2 cerrada. Commits: 2.1 `ef995f0`, 2.2 `22f72ab`, 2.3 `9bd0223`, bloque 2.4–2.10 `6921fce`.
+Spec activo: specs/003-pagina-completa/
+- Meta 003: bloque 1 (fases 1–2) hecho el 2026-10-07, sin commit. Página completa: barra superior, portada con cédulas, servicios, consultorios con «Cómo llegar», cita, pago con etiquetas, pie y botón flotante.
+- Meta 002 cerrada el 2026-10-07: producción en https://dentista-jose.vercel.app, Android 7 de 7, respaldo en «sí». C6 pospuesto (ADR-012).
+- Meta 001 cerrada: `b5234c8`, `2ebaf76`. Etapa 2 cerrada: `6921fce`.
 
 ## Siguiente
-1. El autor hace el commit del bloque 1 de la 002 (título y `git add` en `Claude outputs/002-publicacion/bloque-1.md`).
-2. Bloque 2 (fases 3 y 4), del autor: sigue `Claude outputs/002-publicacion/guia-publicar.md`. Publica en GitHub privado y Vercel, prueba en Android y corre PageSpeed. Devuelve la tabla de la sección 14.
-3. Bloque 3 (fase 5), automático: medir contra producción y cerrar la meta.
-- Después: 003 secciones · 004 diseño · 005 datos reales.
-- En paralelo: el autor lanza a `pruebas` sobre 001 (`Claude outputs/pruebas/001-esqueleto-caminante/encargo.md`).
+1. El autor hace el commit (cierre 002 + bloque 1 de la 003) y el push. Vercel publica solo.
+2. Fase 3 de la 003 (autor): revisar la página en el teléfono y tocar «Cómo llegar» de Tula y Pachuca (M7).
+3. Después se corre `check-deploy` contra producción y se cierra la 003.
+- Después: 004 marca (logotipo, fuente, vista previa al compartir, Lighthouse) · 005 datos reales.
+- En paralelo: el autor lanza a `pruebas` sobre 001.
 - Se trabaja por bloques (ADR-003). El commit del autor equivale a «sigue» (P2).
 
 ## Decisiones abiertas
 - Ninguna sin entrada. Ver BACKLOG: A1 (CLABE), A2 (horarios reales), A3 (iPhone), M3 (escritura por Bash).
 
 ## Pendientes del autor
-- Commit del bloque 1 de la 002.
-- Fases 3 y 4 según la guía: cuenta de GitHub, repositorio privado, renombrar la rama a `main` (hoy es `master`), subir, cuenta de Vercel, prueba en Android y PageSpeed.
-- Leer las reglas vigentes del plan Hobby de Vercel antes de anunciar la página (A7).
-- Decidir qué hacer con el `AGENTS.md` que crea `next dev` (B8).
+- Commit y push del cierre 002 + bloque 1 de la 003.
+- Revisar en el teléfono la página nueva y los dos «Cómo llegar» (M7).
+- Revisar los textos nuevos de `src/content/dentist.ts` (clarify 003 #4).
+- Decir qué cédula va con qué título (M9) y dar el correo del dentista (A8).
+- Leer las reglas del plan Hobby de Vercel antes de anunciar la página (A7).
+- Decidir qué hacer con `AGENTS.md` (B8).
 - Lanzar al agente `pruebas` sobre la meta 001.
-- Conseguir la CLABE de BBVA (A1).
-- Conseguir los horarios reales y su reparto por consultorio (A2).
-- Aprobar las etiquetas de los datos de pago (M6), en la meta 003.
+- Conseguir la CLABE (A1) y los horarios reales (A2).
 
 ## Bloqueado
 - Nada.
@@ -57,8 +56,11 @@ Solo por id. Los originales están en `info/` y ningún agente los lee (P1).
 - Solo el arnés: `npm run test:harness` (timeout 120 000 ms). No construye.
 - Solo el build: `npm run build`. Solo el peso: `npm run weight` (después del build).
 - Despliegue (C2, C3): `npm run check-deploy -- <url>`. `precheck-deploy` construye antes. Sin red: `node scripts/check-deploy.mjs --html out/index.html --json`.
-- Resultado al cerrar el bloque 1 de la 002: 129/129 en verde. `npm test` tarda 10,1–11,4 s en total (Vitest ≈ 3,2–3,3 s). Arnés: 96/96.
-- Peso C7: 177 921 B gzip de 500 000.
+- Resultado del bloque 1 de la 003 (2026-10-07): 147/147 en verde, Vitest 3,45 s. Arnés: 96/96.
+- Producción (C2, C3 de la 002): `check-deploy https://dentista-jose.vercel.app --json` salió con 0 el 2026-10-07.
+- Peso: 182 801 B gzip de 500 000.
+- Capturas: Edge sin ventana tiene ancho mínimo de 492 px. Para ver 360 px, la página va dentro de un iframe de 360 px.
+- Lighthouse (C6): PageSpeed Insights en el navegador, al cerrar la 004 (ADR-012). La API sin clave puede dar 429.
 - Revisión previa a la subida (P1): 0 rutas de la carpeta sensible en `git ls-files` y 0 en `git log --all --name-only --format=` (2026-10-07).
 
 ## Trampas conocidas
