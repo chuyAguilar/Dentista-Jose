@@ -45,6 +45,9 @@
 - Node v24.15.0 y npm 11.12.1 (comprobados el 2026-10-07).
 - Git 2.51.1. Python 3.10.11 instalado, pero no se usa en el proyecto.
 - No están instalados pnpm ni la CLI de Vercel.
+- Git Credential Manager 2.6.1 viene con Git para Windows (comprobado el 2026-10-07).
+- Rama local actual: `master`. La guía 002 la renombra a `main` antes del primer push.
+- Prueba por la red local: `npm run dev -- -H <IP-de-la-PC>`. Con la IP exacta no hace falta `allowedDevOrigins`.
 
 ## Glosario
 - **CLABE:** clave bancaria estandarizada de 18 dígitos para transferencias SPEI en México.
@@ -59,8 +62,7 @@
 - **REF-NN:** id de un dato de referencia original en `info/`.
 
 ## Trabajo en curso
-- Meta: 001, esqueleto caminante. Spec aprobado y plan autorizado el 2026-10-07.
-- Bloque 1 (fases 1–4): commit `b5234c8`, 125/125 en verde.
-- Bloque 2 (fase 5): paridad 7 de 7, firmada por el autor. C8 (Android) pasó a la meta 002.
-- Falta: prueba independiente del agente `pruebas`.
+- Meta 001, esqueleto caminante: cerrada (`b5234c8`, `2ebaf76`). Falta la prueba del agente `pruebas`.
+- Meta 002, publicación: bloque 1 (fases 1–2) hecho el 2026-10-07, sin commit. Siguen las fases 3 y 4, del autor, con la guía `Claude outputs/002-publicacion/guia-publicar.md`.
+- Orden fijado: 002 publicación · 003 secciones · 004 diseño · 005 datos reales.
 - Etapa 2 (arnés) cerrada. Commit del bloque: `6921fce`.

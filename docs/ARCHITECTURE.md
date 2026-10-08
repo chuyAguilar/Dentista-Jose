@@ -26,6 +26,7 @@ Este archivo describe la estructura. Solo cambia si cambia la estructura.
 | Interfaz | `src/app/` | La página y sus secciones. Lee el contenido y llama a la lógica. | hecho en 001: página mínima. Secciones y diseño: 002 |
 | Botón de copiar | `src/app/` | Único componente de cliente. Copia al portapapeles el dato bancario. | hecho en 001 (`CopyButton.tsx`). Prueba en Android: 002 (A5) |
 | Estáticos | `public/` | Imágenes optimizadas y el ícono. | vacío. Meta 002 |
+| Verificación del despliegue | `scripts/check-deploy.mjs` | Pide la URL publicada y exige 200 sobre HTTPS y los mismos marcadores que `out/index.html` (WhatsApp y tarjeta agrupada). Sin dependencias (ADR-011). | hecho en 002 (bloque 1). Pruebas sin red en `tests/check-deploy.test.ts` |
 | Pruebas | `tests/` | Vitest para la lógica y el contenido. Playwright y Lighthouse para la página (por confirmar en el plan 001). | Vitest: contenido, lógica y HTML final; peso con `scripts/measure-weight.mjs` (ADR-005, ADR-006). Lighthouse: 002 (A4) |
 
 ## Flujo de datos

@@ -14,6 +14,7 @@ Prioridades:
   - [A3 — Prueba en iPhone](#a3--prueba-en-iphone)
   - [A4 — Lighthouse móvil completo](#a4--lighthouse-móvil-completo)
   - [A5 — Despliegue en Vercel y prueba en Android](#a5--despliegue-en-vercel-y-prueba-en-android)
+  - [A7 — Plan de Vercel para uso comercial](#a7--plan-de-vercel-para-uso-comercial)
 - [Media](#media)
   - [M1 — Dominio propio](#m1--dominio-propio)
   - [M2 — Medir clics en los botones](#m2--medir-clics-en-los-botones)
@@ -21,6 +22,8 @@ Prioridades:
   - [M4 — Probar el respaldo del copiado en Android](#m4--probar-el-respaldo-del-copiado-en-android)
   - [M5 — Metadatos para SEO y para compartir](#m5--metadatos-para-seo-y-para-compartir)
   - [M6 — Etiquetas de los datos de pago](#m6--etiquetas-de-los-datos-de-pago)
+  - [M7 — Pasos de mapas en la prueba de Android](#m7--pasos-de-mapas-en-la-prueba-de-android)
+  - [M8 — Correr npm test en cada push](#m8--correr-npm-test-en-cada-push)
 - [Baja](#baja)
   - [B1 — Subir a TypeScript 7](#b1--subir-a-typescript-7)
   - [B2 — Paquetes «extraneous» en npm ls](#b2--paquetes-extraneous-en-npm-ls)
@@ -28,6 +31,8 @@ Prioridades:
   - [B4 — Falsos positivos de la palabra «info»](#b4--falsos-positivos-de-la-palabra-info)
   - [B5 — Pruebas de componente o de punta a punta](#b5--pruebas-de-componente-o-de-punta-a-punta)
   - [B6 — Archivos .gitkeep que sobran](#b6--archivos-gitkeep-que-sobran)
+  - [B7 — vercel.json para encabezados e instalación](#b7--verceljson-para-encabezados-e-instalación)
+  - [B8 — next dev crea AGENTS.md](#b8--next-dev-crea-agentsmd)
 - [Cerrados](#cerrados)
 
 ## Alta
@@ -60,7 +65,13 @@ Prioridades:
 - **Qué es:** publicar en Vercel (vista previa y producción) y correr `/prueba-android` con HTTPS real (antes C8 de la meta 001).
 - **Por qué se pospone:** sin HTTPS, Chrome en Android no deja copiar al portapapeles. El autor prefirió esperar a Vercel (clarify 001 #1).
 - **De dónde viene:** plan y clarify 001, 2026-10-07.
-- **Para cerrarla:** en la meta 002, desplegar y obtener 9 de 9 en `/prueba-android`.
+- **Para cerrarla:** en la meta 002, desplegar y obtener 7 de 7 pasos aplicables en `/prueba-android` (pasos 7 y 8 en la meta 003, M7).
+
+### A7 — Plan de Vercel para uso comercial
+- **Qué es:** decidir el plan de Vercel antes de anunciar la página a los pacientes.
+- **Por qué se pospone:** según el plan 002, las reglas de Vercel limitan el plan Hobby (gratis) al uso personal y no comercial. La página es de un consultorio. Hay que leer el texto vigente en la página de precios de Vercel.
+- **De dónde viene:** plan 002, clarify #12, 2026-10-07.
+- **Para cerrarla:** el autor lee las reglas vigentes y elige el plan (Hobby, Pro u otro hosting) antes del lanzamiento. Si cambia el hosting, nuevo ADR.
 
 ## Media
 
@@ -92,13 +103,25 @@ Prioridades:
 - **Qué es:** descripción, Open Graph e ícono, para que el enlace se vea bien al compartirlo por WhatsApp.
 - **Por qué se pospone:** no es parte del esqueleto caminante.
 - **De dónde viene:** plan 001, 2026-10-07.
-- **Para cerrarla:** en la meta 002, con la vista previa del enlace comprobada en WhatsApp.
+- **Para cerrarla:** en la meta 004 (diseño y marca), con la vista previa del enlace comprobada en WhatsApp.
 
 ### M6 — Etiquetas de los datos de pago
 - **Qué es:** poner «Banco», «Titular» y «Tarjeta» junto a cada dato del bloque de pago.
 - **Por qué se pospone:** esos textos no están aprobados (P8, clarify 001 #9). En la 001 los datos van sin etiqueta.
 - **De dónde viene:** bloque 1 de la meta 001, 2026-10-07.
-- **Para cerrarla:** el autor aprueba los textos en la meta 002 y van a `src/content/`.
+- **Para cerrarla:** el autor aprueba los textos en la meta 003 (secciones completas) y van a `src/content/`.
+
+### M7 — Pasos de mapas en la prueba de Android
+- **Qué es:** los pasos 7 y 8 de `/prueba-android` («Cómo llegar» a Tula y a Pachuca).
+- **Por qué se pospone:** los mapas no existen hasta la meta 003.
+- **De dónde viene:** plan 002, clarify #7, 2026-10-07.
+- **Para cerrarla:** en la meta 003, correr los pasos 7 y 8 sobre producción: 2 de 2 en «sí».
+
+### M8 — Correr npm test en cada push
+- **Qué es:** que cada push corra la suite antes de publicar (por ejemplo, en el build de Vercel o en GitHub Actions).
+- **Por qué se pospone:** hoy el autor corre `npm test` antes de cada commit; la meta 002 solo publica.
+- **De dónde viene:** plan 002, 2026-10-07.
+- **Para cerrarla:** elegir dónde corre la suite, con un ADR, y comprobar que un fallo detiene la publicación.
 
 ## Baja
 
@@ -137,6 +160,18 @@ Prioridades:
 - **Por qué se pospone:** no estorban y borrarlos no lo pide el plan 001.
 - **De dónde viene:** bloque 1 de la meta 001, 2026-10-07.
 - **Para cerrarla:** borrarlos en cualquier bloque que toque esas carpetas.
+
+### B7 — vercel.json para encabezados e instalación
+- **Qué es:** declarar en el repo los encabezados de seguridad y el Install Command, en vez de fijarlos en el panel de Vercel.
+- **Por qué se pospone:** los encabezados no cuentan en Lighthouse y `role-guard.mjs` no deja a `desarrollo` escribir `vercel.json` (ADR-009).
+- **De dónde viene:** plan 002, 2026-10-07.
+- **Para cerrarla:** solo si estorba. Permitir `vercel.json` en `role-guard.mjs` (sesión normal), con su prueba en el arnés.
+
+### B8 — next dev crea AGENTS.md
+- **Qué es:** Next 16.4 escribe `AGENTS.md` en la raíz cada vez que corre `next dev`, con instrucciones para agentes de IA. Si se borra, lo vuelve a crear. Se apaga con `agentRules: false` en `next.config.ts`, según el aviso del propio `next dev`.
+- **Por qué se pospone:** el plan 002 no toca `next.config.ts` ni `.gitignore`. Elegir entre apagarlo, ignorarlo o versionarlo es decisión del autor.
+- **De dónde viene:** bloque 1 de la meta 002, 2026-10-07 (prueba de `next dev -H`).
+- **Para cerrarla:** el autor elige. Recomendación: `agentRules: false` en `next.config.ts`, porque el arnés ya guía a los agentes desde `CLAUDE.md` y la documentación instalada. Mientras tanto, la guía 002 pide borrarlo después del paso 10.
 
 ## Cerrados
 - Ninguno todavía.

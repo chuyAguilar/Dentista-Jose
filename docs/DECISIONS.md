@@ -11,6 +11,10 @@ Registro aditivo. Un ADR viejo nunca se reescribe: se marca «Superseded por ADR
 - [ADR-005 — Medición del peso de la página](#adr-005--medición-del-peso-de-la-página)
 - [ADR-006 — Pruebas de la interfaz en la meta 001](#adr-006--pruebas-de-la-interfaz-en-la-meta-001)
 - [ADR-007 — npm test construye antes de probar](#adr-007--npm-test-construye-antes-de-probar)
+- [ADR-008 — Aprobación tácita de specs, planes y clarify](#adr-008--aprobación-tácita-de-specs-planes-y-clarify)
+- [ADR-009 — Publicación con GitHub privado y Vercel](#adr-009--publicación-con-github-privado-y-vercel)
+- [ADR-010 — Lighthouse con PageSpeed Insights](#adr-010--lighthouse-con-pagespeed-insights)
+- [ADR-011 — Verificación del despliegue con check-deploy](#adr-011--verificación-del-despliegue-con-check-deploy)
 
 ## ADR-001 — Adopción del arnés de contexto y del flujo SDD
 Fecha: 2026-10-07
@@ -139,3 +143,70 @@ Estado: Aceptado (plan 001, clarify #8)
 **Consecuencias.**
 - `npm ci && npm test` en un clon limpio da el mismo resultado (P6).
 - `npm test` tarda más. El tiempo se reporta en `memory.md`.
+
+## ADR-008 — Aprobación tácita de specs, planes y clarify
+Fecha: 2026-10-07
+Estado: Aceptado. Enmienda P2 de la constitución.
+
+**Contexto.**
+- El autor pidió no esperar su «aprobado» después de los commits y continuar.
+- El texto anterior de P2 está en `docs/history/2026-10-07-constitution-P2-antes-ADR-008.md`.
+
+**Decisión.**
+- El spec se marca «aprobado (tácito, ADR-008)» y el plan se autoriza con la opción recomendada de cada pregunta de `clarify.md`.
+- La línea de `tasks.md` dice «Plan autorizado por el autor el AAAA-MM-DD (tácito, ADR-008)».
+- Se espera al autor solo si hace falta una acción suya, si algo falla o si no hay una recomendación clara.
+- Los commits, el push y las pruebas en hardware siguen siendo del autor.
+
+**Consecuencias.**
+- Menos paradas. El autor revisa spec, plan y respuestas en el commit del bloque.
+- Si el autor corrige algo en la revisión, se registra en `clarify.md` y se rehace la fase afectada.
+
+## ADR-009 — Publicación con GitHub privado y Vercel
+Fecha: 2026-10-07
+Estado: Aceptado (plan 002, clarify #1, #3, #9 y #12; tácito, ADR-008)
+
+**Contexto.**
+- El repo no tiene remoto. Los agentes no hacen push (P2).
+
+**Decisión.**
+- El remoto es un repositorio privado en GitHub. El autor lo crea y hace el push.
+- Vercel publica con su integración Git: producción desde la rama principal y vista previa por rama.
+- Sin CLI de Vercel y sin `vercel.json`. Install Command `npm ci` y Node 24.x se fijan en el panel de Vercel.
+- `engines.node` pasa a `"24.x"`.
+- Plan Hobby mientras la página no se anuncie a pacientes (A7).
+
+**Consecuencias.**
+- Cada push publica solo. El código no es público.
+- Parte de la configuración vive en el panel de Vercel, fuera del repo (B7).
+
+## ADR-010 — Lighthouse con PageSpeed Insights
+Fecha: 2026-10-07
+Estado: Aceptado (plan 002, clarify #2 y #4; tácito, ADR-008)
+
+**Contexto.**
+- P9 pide Lighthouse móvil ≥ 90. El paquete `lighthouse` es grande y necesita Chrome.
+
+**Decisión.**
+- Se mide con PageSpeed Insights, modo móvil, sobre producción. Se reporta la mediana de 3 corridas.
+- Nunca sobre una vista previa: Vercel la protege y le pone `noindex`.
+- Bajo 90: se corrige en la meta solo si no cambia texto visible ni estilos. Si no, entrada Alta (A6).
+
+**Consecuencias.**
+- Cero dependencias. La medición la hace el autor en el navegador.
+
+## ADR-011 — Verificación del despliegue con check-deploy
+Fecha: 2026-10-07
+Estado: Aceptado (plan 002, clarify #8; tácito, ADR-008)
+
+**Contexto.**
+- C2 y C3 piden comprobar HTTPS y que producción sirve lo mismo que el build local.
+- El id del build cambia, así que no se compara byte a byte.
+
+**Decisión.**
+- `scripts/check-deploy.mjs <url>` pide la página, exige estado 200 sobre HTTPS y busca los marcadores de `out/index.html` (enlace de WhatsApp y tarjeta agrupada).
+- Un certificado inválido hace fallar la petición y cuenta como fallo de C2.
+- Se prueba sin red, como proceso hijo con `--html` (igual que ADR-005).
+
+**Consecuencias.**
+- C2 y C3 se repiten con un comando. La prueba de la suite no depende de internet.

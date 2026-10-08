@@ -1,6 +1,6 @@
 # Constitución — Integración Dental
 
-Última actualización: 2026-10-07 (P2 enmendado por ADR-003)
+Última actualización: 2026-10-07 (P2 enmendado por ADR-003 y ADR-008)
 
 ## Índice
 - [Jerarquía de verdad](#jerarquía-de-verdad)
@@ -48,6 +48,8 @@ constitución > ADR vigentes > spec activo > plan > código.
 - Al cerrar el bloque, el agente se detiene. Se detiene antes si una fase falla o necesita una decisión del autor.
 - El commit del autor equivale a «sigue»: después de él se avanza sin preguntar.
 - Las decisiones del autor (objetivo, alcance, datos sensibles, stack, roles y criterios de terminado) no se inventan. Se proponen como «propuesta», con su recomendación y su porqué.
+- Aprobación tácita (ADR-008): specs, planes y preguntas de `clarify.md` avanzan con la opción recomendada, sin esperar un «aprobado». El autor los revisa en el commit.
+- Se espera al autor solo si hace falta una acción suya (cuentas, push, hardware), si algo falla o si no hay una recomendación clara.
 
 **Porqué.** El autor responde ante el cliente. Cada cambio pasa por sus manos y queda revisable.
 

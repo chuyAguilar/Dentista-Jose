@@ -4,7 +4,7 @@
   "private": true,
   "description": "Landing page del C.D. José Ángel Jiménez Tapia (Integración Dental).",
   "engines": {
-    "node": ">=24.0.0"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "next dev",
@@ -12,7 +12,9 @@
     "pretest": "next build",
     "test": "vitest run",
     "test:harness": "vitest run tests/harness.test.ts",
-    "weight": "node scripts/measure-weight.mjs"
+    "weight": "node scripts/measure-weight.mjs",
+    "precheck-deploy": "next build",
+    "check-deploy": "node scripts/check-deploy.mjs"
   },
   "dependencies": {
     "next": "16.4.0",
